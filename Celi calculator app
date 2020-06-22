@@ -1,0 +1,119 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+import Tkinter as tk
+
+years = [5000, 5000, 5000, 5000, 5500, 5500, 10000, 5500, 5500, 5500, 6000, 6000]
+date =  [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020]
+born_year = [1991, 1992, 1993, 1994, 1995, 1996, 1997 ,1998, 1999, 2000, 2001, 2002]
+max_cotisation = sum(years)
+
+val = date.index(2017)
+
+
+window = tk.Tk()
+window.title("Celi calculator")
+
+# ----------------------------------- Functions ---------------------------------------
+
+
+def celi_total_amount():
+
+    age = int(ent_born.get())
+
+    if age >= 1991 and age <= 2002 :
+        birth_index = born_year.index(age)
+        lbl_result_age["text"] = 'You can contribure an amount of ' +  str(max_cotisation - sum(years[0:birth_index]))+ '$'
+
+    else :
+        lbl_result_age["text"] = 'You need to be 18 years old to contribute to your Celi'
+
+
+def celi_per_year ():
+
+    celi_year = int(ent_year.get())
+
+    if celi_year > 2009 and celi_year < 2021:
+        index = date.index(celi_year)
+        lbl_result_year["text"]= str(years[index]) + '$'
+
+    else :
+        lbl_result_year["text"]= "There is not enough data for this year."
+
+
+# --------------------------------- GUI Widgets ----------------------------------
+
+frm_title = tk.Frame(master = window, width = 200, height = 25, bg="yellow")
+frm_title.pack()
+
+lbl_greeting = tk.Label(
+    master = frm_title,
+    text = "Hello welcome to Celi calculator!",
+    foreground = "black",
+    background = "white"
+    )
+
+# Calculation of the max amount you can have in your Celi base on your age
+lbl_year_born = tk.Label(
+
+    text = "When were you born?",
+    foreground = "black",
+    background = "white"
+    )
+
+
+btn_year_born_submit = tk.Button(
+    text="submit",
+    background = "green",
+    fg = "blue",
+    command = celi_total_amount
+)
+
+ent_born = tk.Entry(
+    fg="blue",
+    bg="white",
+    width = 10
+)
+
+lbl_result_age = tk.Label(
+    text= ""
+)
+
+# Calculation of the amount per year you can contribute to a Celi
+lbl_celi_peryear = tk.Label(
+    text = "Celi contribution amount per year",
+    foreground = "black",
+    background = "white"
+    )
+
+ent_year = tk.Entry(
+    fg="blue",
+    bg="white",
+    width = 10
+)
+
+btn_peryear_submit = tk.Button(
+    text="submit",
+    background = "green",
+    fg = "blue",
+    command = celi_per_year
+)
+
+lbl_result_year = tk.Label(
+    text = ""
+)
+
+# --------------------------------------  UI Display  -----------------------------------
+
+
+lbl_greeting.pack()
+lbl_year_born.pack()
+ent_born.pack()
+btn_year_born_submit.pack()
+lbl_result_age.pack()
+lbl_celi_peryear.pack()
+ent_year.pack()
+btn_peryear_submit.pack()
+lbl_result_year.pack()
+
+
+window.mainloop()
