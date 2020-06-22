@@ -39,81 +39,72 @@ def celi_per_year ():
     else :
         lbl_result_year["text"]= "There is not enough data for this year."
 
+def interest ():
+    amount = float(ent_invest_amount.get())
+    nb_years = float(ent_nb_years.get())
+    interest = float(ent_interest_rate.get())
+    result = amount * (1+(interest/100)* nb_years)
+
+    lbl_interest_calculation_result["text"]= "Your investment of " + str(amount) + "$ will value " + str(result) + "$ after " + str(int(nb_years)) + " years"
 
 # --------------------------------- GUI Widgets ----------------------------------
 
-frm_title = tk.Frame(master = window, width = 200, height = 25, bg="yellow")
-frm_title.pack()
 
-lbl_greeting = tk.Label(
-    master = frm_title,
-    text = "Hello welcome to Celi calculator!",
-    foreground = "black",
-    background = "white"
-    )
+lbl_greeting = tk.Label(text = "Hello welcome to Celi calculator!", fg = "black")
+lbl_greeting.pack()
 
 # Calculation of the max amount you can have in your Celi base on your age
-lbl_year_born = tk.Label(
+lbl_year_born = tk.Label(text = "When were you born?",fg = "black")
+lbl_year_born.pack()
 
-    text = "When were you born?",
-    foreground = "black",
-    background = "white"
-    )
+btn_year_born_submit = tk.Button(text="submit", fg = "blue", command = celi_total_amount)
+btn_year_born_submit.pack()
 
+ent_born = tk.Entry(fg="blue",width = 10)
+ent_born.pack()
 
-btn_year_born_submit = tk.Button(
-    text="submit",
-    background = "green",
-    fg = "blue",
-    command = celi_total_amount
-)
-
-ent_born = tk.Entry(
-    fg="blue",
-    bg="white",
-    width = 10
-)
-
-lbl_result_age = tk.Label(
-    text= ""
-)
+lbl_result_age = tk.Label(text= "")
+lbl_result_age.pack()
 
 # Calculation of the amount per year you can contribute to a Celi
-lbl_celi_peryear = tk.Label(
-    text = "Celi contribution amount per year",
-    foreground = "black",
-    background = "white"
-    )
-
-ent_year = tk.Entry(
-    fg="blue",
-    bg="white",
-    width = 10
-)
-
-btn_peryear_submit = tk.Button(
-    text="submit",
-    background = "green",
-    fg = "blue",
-    command = celi_per_year
-)
-
-lbl_result_year = tk.Label(
-    text = ""
-)
-
-# --------------------------------------  UI Display  -----------------------------------
-
-
-lbl_greeting.pack()
-lbl_year_born.pack()
-ent_born.pack()
-btn_year_born_submit.pack()
-lbl_result_age.pack()
+lbl_celi_peryear = tk.Label(text = "Celi contribution amount per year",fg = "black")
 lbl_celi_peryear.pack()
+
+ent_year = tk.Entry(fg="blue", width = 10)
 ent_year.pack()
+
+btn_peryear_submit = tk.Button(text="submit", background = "green", fg = "blue",command = celi_per_year)
 btn_peryear_submit.pack()
+
+lbl_result_year = tk.Label(text = "")
 lbl_result_year.pack()
 
+# Calculation of the amount after interest on term
+lbl_interest_calculation = tk.Label(text = "Interest calculation")
+lbl_interest_calculation.pack()
+
+lbl_invest_amount = tk.Label(text = "Invest amount ($)")
+lbl_invest_amount.pack()
+
+ent_invest_amount = tk.Entry(fg = "blue", width = 10)
+ent_invest_amount.pack()
+
+lbl_nb_years = tk.Label(text = "number of years")
+lbl_nb_years.pack()
+
+ent_nb_years = tk.Entry(fg = "blue", width = 10)
+ent_nb_years.pack()
+
+lbl_interest_rate = tk.Label(text = "Interest rate (%)")
+lbl_interest_rate.pack()
+
+ent_interest_rate = tk.Entry(fg = "blue", width = 10)
+ent_interest_rate.pack()
+
+btn_investment_submit = tk.Button(text="submit", background = "green", fg = "blue",command = interest)
+btn_investment_submit.pack()
+
+lbl_interest_calculation_result = tk.Label(text = "")
+lbl_interest_calculation_result.pack()
 
 window.mainloop()
