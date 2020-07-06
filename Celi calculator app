@@ -45,7 +45,7 @@ def interest ():
     interest = float(ent_interest_rate.get())
     result = amount * (1+(interest/100)* nb_years)
 
-    lbl_interest_calculation_result["text"]= "Your investment of " + str(amount) + "$ will value " + str(result) + "$ after " + str(int(nb_years)) + " years"
+    lbl_interest_calculation_result["text"]= f"Your investment of {amount}$ will value {result}$ after {nb_years} years"
 
 # --------------------------------- GUI Widgets ----------------------------------
 
